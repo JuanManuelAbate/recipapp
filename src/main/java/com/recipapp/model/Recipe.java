@@ -9,14 +9,10 @@ import java.util.List;
 
 @Data
 @Document
-public class Recipe {
+public class Recipe extends AbstractDocument {
 
-    @Id
-    @JsonIgnore
-    private Long id;
     private String description;
     private List<Picture> photos;
     private List<IngredientQuantity> ingredients;
     private List<Step> steps;
-
 }
