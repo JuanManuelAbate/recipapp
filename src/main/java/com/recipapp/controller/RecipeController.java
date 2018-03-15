@@ -29,6 +29,7 @@ public class RecipeController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ApiOperation(value = "Creates a new recipe with the given parameters", tags = RECIPE_TAG)
     public Recipe createRecipe(@RequestBody Recipe recipe) {
+        recipe.setId(null);
         return recipeService.save(recipe);
     }
 

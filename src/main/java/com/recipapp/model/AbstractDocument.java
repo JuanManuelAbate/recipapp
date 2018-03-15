@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public abstract class AbstractDocument {
 
     @Id
-    @JsonIgnore
     private Long id;
     @JsonIgnore
     private boolean deleted = false;
