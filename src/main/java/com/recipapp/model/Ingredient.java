@@ -3,7 +3,7 @@ package com.recipapp.model;
 import lombok.Data;
 
 @Data
-public class Ingredient{
+public class Ingredient {
 
     private String name;
 
