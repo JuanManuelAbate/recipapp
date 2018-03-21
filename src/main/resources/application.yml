@@ -2,3 +2,7 @@ spring:
   data:
     mongodb:
       database: recipapp
+
+info:
+  build:
+    version: @project.version@

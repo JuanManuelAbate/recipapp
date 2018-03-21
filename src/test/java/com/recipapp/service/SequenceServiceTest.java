@@ -41,7 +41,7 @@ public class SequenceServiceTest {
     }
 
     @Test
-    public void testIncrementNonExistent(){
+    public void testIncrementNonExistent() {
         when(repo.findById(SequenceIdentifier.INGREDIENT.getSeqId()))
                 .thenReturn(Optional.empty());
         assertEquals("Sequence was not created correctly",

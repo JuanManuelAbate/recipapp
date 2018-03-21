@@ -1,8 +1,6 @@
 package com.recipapp.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -11,6 +9,7 @@ import java.util.List;
 @Document
 public class Recipe extends AbstractDocument {
 
+    private String name;
     private String description;
     private List<Picture> photos;
     private List<IngredientQuantity> ingredients;
