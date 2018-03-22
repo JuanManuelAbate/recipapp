@@ -11,6 +11,7 @@ import com.recipapp.service.RecipeService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +36,24 @@ public class RecipeController {
     @ApiOperation(value = "Searches the list of recipes that applyies to the given filters", tags = RECIPE_TAG)
     public SearchResponse<Recipe> searchRecipe(@Validated RecipeSearchRequest request) {
         return mapper.map(recipeService.searchRecipesByParams(request), SearchResponse.class);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ApiOperation(value = "Gets the recipe for the given id", tags = RECIPE_TAG)
+    public Recipe getRecipeById(@PathVariable Long id) {
+        return recipeService.get(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ApiOperation(value = "Deletes the recipe for the given id", tags = RECIPE_TAG)
+    public Recipe deleteRecipe(@PathVariable Long id) {
+        return recipeService.delete(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @ApiOperation(value = "Updates the recipe for the given id", tags = RECIPE_TAG)
+    public Recipe update(@PathVariable Long id, @RequestBody Recipe recipe) {
+        return recipeService.update(recipe, id);
     }
 
 }
