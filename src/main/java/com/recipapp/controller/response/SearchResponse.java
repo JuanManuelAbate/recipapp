@@ -9,6 +9,8 @@ import java.util.List;
 public class SearchResponse<O> {
 
     private List<O> data;
-    private int pages;
-    private int size;
+    private Integer pages;
+    private Integer size;
+    private Long totalElements;
+    private Integer totalPages;
 }

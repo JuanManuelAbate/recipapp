@@ -25,6 +25,8 @@ public class SearchObjectMapper extends AbstractObjectMapper<Page<?>, SearchResp
         resp.setData(input.getContent());
         resp.setPages(input.getTotalPages());
         resp.setSize(input.getSize());
+        resp.setTotalElements(input.getTotalElements());
+        resp.setTotalPages(input.getTotalPages());
         return resp;
     }
 }
