@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Data
-@Document
 public class Recipe extends AbstractDocument {
 
     private String name;
