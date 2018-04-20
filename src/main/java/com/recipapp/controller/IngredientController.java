@@ -2,6 +2,8 @@ package com.recipapp.controller;
 
 import static com.recipapp.controller.ControllerTags.INGREDIENT_TAG;
 
+import com.recipapp.controller.request.IngredientRequest;
+import com.recipapp.mapper.Mapper;
 import com.recipapp.model.Ingredient;
 import com.recipapp.service.IngredientService;
 
@@ -19,10 +21,12 @@ public class IngredientController {
     @Autowired
     IngredientService ingredientService;
 
+    @Autowired
+    private Mapper mapper;
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ApiOperation(value = "Creates a new ingredient with the given parameters", tags = INGREDIENT_TAG)
-    public Ingredient createRecipe(@RequestBody Ingredient ingredient) {
-        ingredient.setId(null);
-        return ingredientService.save(ingredient);
+    public Ingredient createRecipe(@RequestBody IngredientRequest ingredientRequest) {
+        return ingredientService.save(mapper.map(ingredientRequest, Ingredient.class));
     }
 }

@@ -2,6 +2,7 @@ package com.recipapp.controller;
 
 import static com.recipapp.controller.ControllerTags.RECIPE_TAG;
 
+import com.recipapp.controller.request.RecipeRequest;
 import com.recipapp.controller.request.RecipeSearchRequest;
 import com.recipapp.controller.response.SearchResponse;
 import com.recipapp.mapper.Mapper;
@@ -23,14 +24,14 @@ public class RecipeController {
 
     @Autowired
     private RecipeService recipeService;
+
     @Autowired
     private Mapper mapper;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ApiOperation(value = "Creates a new recipe with the given parameters", tags = RECIPE_TAG)
-    public Recipe createRecipe(@RequestBody Recipe recipe) {
-        recipe.setId(null);
-        return recipeService.save(recipe);
+    public Recipe createRecipe(@RequestBody RecipeRequest recipeRequest) {
+        return recipeService.save(mapper.map(recipeRequest, Recipe.class));
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -53,8 +54,8 @@ public class RecipeController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     @ApiOperation(value = "Updates the recipe for the given id", tags = RECIPE_TAG)
-    public Recipe update(@PathVariable Long id, @RequestBody Recipe recipe) {
-        return recipeService.update(recipe, id);
+    public Recipe update(@PathVariable Long id, @RequestBody RecipeRequest recipeRequest) {
+        return recipeService.update(mapper.map(recipeRequest, Recipe.class), id);
     }
 
 }
