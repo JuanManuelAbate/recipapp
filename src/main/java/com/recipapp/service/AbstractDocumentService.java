@@ -20,7 +20,8 @@ public abstract class AbstractDocumentService<O extends AbstractDocument> {
         if (modifiedDoc.getId() == null) {
             modifiedDoc.setId(this.sequenceService.getNextSeq(getSequenceId()));
         }
-        return this.getRecipeRepository().save(modifiedDoc);
+        this.getRecipeRepository().save(modifiedDoc);
+        return this.get(modifiedDoc.getId());
     }
 
     public O update(O document, Long id) {
