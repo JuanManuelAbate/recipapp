@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://admin:admin@ds259079.mlab.com:59079/recipapp
