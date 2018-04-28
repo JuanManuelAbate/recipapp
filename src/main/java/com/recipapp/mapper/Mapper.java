@@ -20,7 +20,8 @@ public class Mapper {
     private static final Logger LOG = LoggerFactory.getLogger(Mapper.class);
 
     public <O extends Object> O map(Object input, Class<O> output) {
-        ObjectMapper<Object, O> objectMapper = availableMappers.get(KeyUtils.generateMappingKey(output));
+        ObjectMapper<Object, O> objectMapper = availableMappers
+            .get(KeyUtils.generateMappingKey(input.getClass(), output));
         if (objectMapper == null) {
             LOG.error("Could not find objectMapper for" + output.getName());
             throw new MappingException("ObjectMapper for given input does not exist");

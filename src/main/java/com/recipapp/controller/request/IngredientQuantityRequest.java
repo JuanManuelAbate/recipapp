@@ -5,7 +5,7 @@ import com.recipapp.model.Measurement;
 import lombok.Data;
 
 @Data
-public class RecipeRequestIngredientQuantity {
+public class IngredientQuantityRequest {
 
     private Long id;
     private Measurement measurement;

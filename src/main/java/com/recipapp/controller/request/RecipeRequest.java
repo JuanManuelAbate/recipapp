@@ -13,6 +13,6 @@ public class RecipeRequest {
     private String name;
     private String description;
     private List<Picture> photos;
-    private List<RecipeRequestIngredientQuantity> ingredients;
+    private List<IngredientQuantityRequest> ingredients;
     private List<Step> steps;
 }

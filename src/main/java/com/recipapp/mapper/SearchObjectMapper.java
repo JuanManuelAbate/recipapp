@@ -6,27 +6,28 @@ import com.recipapp.error.MappingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SearchObjectMapper extends AbstractObjectMapper<Page<?>, SearchResponse> {
+public class SearchObjectMapper extends AbstractObjectMapper<PageImpl, SearchResponse> {
+
 
     private static final Logger LOG = LoggerFactory.getLogger(SearchObjectMapper.class);
 
     @Override
-    public SearchResponse map(Page<?> input, Class<SearchResponse> clazz) {
-        SearchResponse resp = null;
-        try {
-            resp = clazz.newInstance();
-        } catch (Exception ex) {
-            LOG.error("Could not map recipe", ex);
-            throw new MappingException("Could not map recipe", ex);
-        }
-        resp.setData(input.getContent());
-        resp.setPages(input.getTotalPages());
-        resp.setSize(input.getSize());
-        resp.setTotalElements(input.getTotalElements());
-        resp.setTotalPages(input.getTotalPages());
-        return resp;
+    protected Logger getLogger() {
+        return LOG;
+    }
+
+
+    @Override
+    public SearchResponse doMap(PageImpl input, SearchResponse output) {
+        output.setData(input.getContent());
+        output.setPages(input.getTotalPages());
+        output.setSize(input.getSize());
+        output.setTotalElements(input.getTotalElements());
+        output.setTotalPages(input.getTotalPages());
+        return output;
     }
 }
